@@ -89,7 +89,7 @@ export const updatePost = async (req, res, next) => {
     const updatedPost = await Post.findByIdAndUpdate(
       id,
       { ...(name && { name }), ...(description && { description }), ...(age !== undefined && { age }) },
-      { new: true, runValidators: true }
+      { returnDocument: "after", runValidators: true }
     );
 
     if (!updatedPost) {
@@ -135,3 +135,4 @@ export const deletePost = async (req, res, next) => {
     next(error);
   }
 };
+
